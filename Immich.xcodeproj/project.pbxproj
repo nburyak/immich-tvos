@@ -28,6 +28,7 @@
 		B96CC3342C31BD3E00A8B8E4 /* OpenAPIRuntime in Frameworks */ = {isa = PBXBuildFile; productRef = B96CC3332C31BD3E00A8B8E4 /* OpenAPIRuntime */; };
 		B96CC3382C31BDA600A8B8E4 /* openapi.json in Resources */ = {isa = PBXBuildFile; fileRef = B96CC3372C31BDA600A8B8E4 /* openapi.json */; };
 		B96CC33A2C31BDD900A8B8E4 /* openapi-generator-config.yaml in Resources */ = {isa = PBXBuildFile; fileRef = B96CC3392C31BDD900A8B8E4 /* openapi-generator-config.yaml */; };
+		B9B7739D2DCE9CA60041B251 /* ImmichDateTranscoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B7739C2DCE9CA60041B251 /* ImmichDateTranscoder.swift */; };
 		B9C5D4F92C24A94900896B53 /* PhotoGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C5D4F82C24A94900896B53 /* PhotoGridView.swift */; };
 		B9DC5B4C2C288A260045A169 /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DC5B4B2C288A260045A169 /* Album.swift */; };
 		B9DC5B4E2C288CFD0045A169 /* LoadingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DC5B4D2C288CFD0045A169 /* LoadingState.swift */; };
@@ -61,6 +62,7 @@
 		B967242A2C483CAD00D07A41 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 		B96CC3372C31BDA600A8B8E4 /* openapi.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = openapi.json; sourceTree = "<group>"; };
 		B96CC3392C31BDD900A8B8E4 /* openapi-generator-config.yaml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = "openapi-generator-config.yaml"; sourceTree = "<group>"; };
+		B9B7739C2DCE9CA60041B251 /* ImmichDateTranscoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImmichDateTranscoder.swift; sourceTree = "<group>"; };
 		B9C5D4F82C24A94900896B53 /* PhotoGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoGridView.swift; sourceTree = "<group>"; };
 		B9DC5B4B2C288A260045A169 /* Album.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
 		B9DC5B4D2C288CFD0045A169 /* LoadingState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingState.swift; sourceTree = "<group>"; };
@@ -168,10 +170,19 @@
 		B9513BAE2C406A0400BAF9A2 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				B9B773992DCE9C9C0041B251 /* Utils */,
 				B944F0272C16214B00E59824 /* ImmichModel.swift */,
 				B9513BB02C406A2000BAF9A2 /* NetworkInterceptor.swift */,
 			);
 			path = Networking;
+			sourceTree = "<group>";
+		};
+		B9B773992DCE9C9C0041B251 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				B9B7739C2DCE9CA60041B251 /* ImmichDateTranscoder.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		B9FD0EFE2C285A6D00E82364 /* Modifiers */ = {
@@ -248,7 +259,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1540;
-				LastUpgradeCheck = 1540;
+				LastUpgradeCheck = 1630;
 				TargetAttributes = {
 					B944EFED2C15F45D00E59824 = {
 						CreatedOnToolsVersion = 15.4;
@@ -323,6 +334,7 @@
 				B9FD0F0D2C28716300E82364 /* View+Extensions.swift in Sources */,
 				B9513BA62C404D3E00BAF9A2 /* LoginView.swift in Sources */,
 				B9FD0F0B2C28714000E82364 /* Tab.swift in Sources */,
+				B9B7739D2DCE9CA60041B251 /* ImmichDateTranscoder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -371,6 +383,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 5A6Y8G25WP;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -434,6 +447,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 5A6Y8G25WP;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -463,7 +477,6 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Immich/Preview Content\"";
-				DEVELOPMENT_TEAM = 5A6Y8G25WP;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -489,7 +502,6 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Immich/Preview Content\"";
-				DEVELOPMENT_TEAM = 5A6Y8G25WP;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

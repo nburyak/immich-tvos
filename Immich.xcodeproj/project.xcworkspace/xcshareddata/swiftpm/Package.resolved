@@ -1,5 +1,5 @@
 {
-  "originHash" : "2307f62ab931a55d6d1cb29cf895ae192106dfeb12f77d2e1a34e55281beb096",
+  "originHash" : "caef9fcddcfa769d09ad2bdd33c62b32768d3e2fe04a5e3f7011e75df205afdf",
   "pins" : [
     {
       "identity" : "libwebp-xcode",
@@ -96,8 +96,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-openapi-generator",
       "state" : {
-        "revision" : "7992d77065f2787e7651cf6d9be9b99ad38f5166",
-        "version" : "1.2.1"
+        "revision" : "9727261219af435e7e668b8813187e9bf5d61927",
+        "version" : "1.4.0"
       }
     },
     {

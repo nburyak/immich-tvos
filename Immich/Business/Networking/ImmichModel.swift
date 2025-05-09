@@ -39,7 +39,7 @@ final class ImmichModel: ObservableObject {
 
         client = Client(
             serverURL: serverURL,
-            configuration: .init(dateTranscoder: .iso8601WithFractionalSeconds),
+            configuration: .init(dateTranscoder: ImmichDateTranscoder.shared),
             transport: URLSessionTransport()
         )
     }
@@ -191,19 +191,21 @@ extension ImmichModel {
 
     static var userMock: Components.Schemas.UserResponseDto {
         Components.Schemas.UserResponseDto(
-            avatarColor: .orange,
-            email: "mykola@gmail.com",
-            id: "119n02n384x-10d234",
-            name: "Mykola",
-            profileImagePath: "")
+            avatarColor: .init(value1: .orange),
+            email: "john.doe@domain.com",
+            id: "30908ebe-f1d2",
+            name: "JohnD",
+            profileChangedAt: Date(),
+            profileImagePath: ""
+        )
     }
 }
 
 extension Array where Element == Photo {
     static let mockedPhotos = [
-        Photo(checksum: "", deviceAssetId: "", deviceId: "", duration: "", fileCreatedAt: Date(), fileModifiedAt: Date(), hasMetadata: true, id: "30908ebe-f1d2-4618-a369-609a545c7798", isArchived: true, isFavorite: true, isOffline: true, isTrashed: true, localDateTime: Date(), originalFileName: "", originalPath: "", ownerId: "", resized: true, _type: .IMAGE, updatedAt: Date()),
-        Photo(checksum: "", deviceAssetId: "", deviceId: "", duration: "", fileCreatedAt: Date(), fileModifiedAt: Date(), hasMetadata: true, id: "e2ddc3d8-e247-4b0a-b13d-7c98f70eb1ee", isArchived: true, isFavorite: true, isOffline: true, isTrashed: true, localDateTime: Date(), originalFileName: "", originalPath: "", ownerId: "", resized: true, _type: .IMAGE, updatedAt: Date()),
-        Photo(checksum: "", deviceAssetId: "", deviceId: "", duration: "", fileCreatedAt: Date(), fileModifiedAt: Date(), hasMetadata: true, id: "be569c4e-cb17-4535-89a4-d0e78da1a8df", isArchived: true, isFavorite: true, isOffline: true, isTrashed: true, localDateTime: Date(), originalFileName: "", originalPath: "", ownerId: "", resized: true, _type: .IMAGE, updatedAt: Date())
+        Photo(checksum: "", deviceAssetId: "", deviceId: "", duration: "", fileCreatedAt: Date(), fileModifiedAt: Date(), hasMetadata: true, id: "30908ebe-f1d2-4618-a369-609a545c7798", isArchived: true, isFavorite: true, isOffline: true, isTrashed: true, localDateTime: Date(), originalFileName: "", originalPath: "", ownerId: "", _type: .init(value1: .IMAGE), updatedAt: Date()),
+        Photo(checksum: "", deviceAssetId: "", deviceId: "", duration: "", fileCreatedAt: Date(), fileModifiedAt: Date(), hasMetadata: true, id: "e2ddc3d8-e247-4b0a-b13d-7c98f70eb1ee", isArchived: true, isFavorite: true, isOffline: true, isTrashed: true, localDateTime: Date(), originalFileName: "", originalPath: "", ownerId: "", _type: .init(value1: .IMAGE), updatedAt: Date()),
+        Photo(checksum: "", deviceAssetId: "", deviceId: "", duration: "", fileCreatedAt: Date(), fileModifiedAt: Date(), hasMetadata: true, id: "be569c4e-cb17-4535-89a4-d0e78da1a8df", isArchived: true, isFavorite: true, isOffline: true, isTrashed: true, localDateTime: Date(), originalFileName: "", originalPath: "", ownerId: "", _type: .init(value1: .IMAGE), updatedAt: Date())
     ]
 }
 
@@ -220,6 +222,6 @@ extension Array where Element == Album {
     static let mockedAlbums = [
         Album(albumName: "French Trip", albumThumbnailAssetId: "e3d0b96c-c0aa-4947-8ce6-b81783c0995a", albumUsers: [], assetCount: 1, assets: [], createdAt: Date(), description: "", endDate: Date(), hasSharedLink: true, id: "3e718879-83cd-4d38-b820-3e96ba7e3672", isActivityEnabled: true, owner: ImmichModel.userMock, ownerId: "", shared: true, updatedAt: Date()),
         Album(albumName: "Lindau, Austria, Lihtenshtein", albumThumbnailAssetId: "9af412d7-8718-48d2-b2c8-1892cd09521a", albumUsers: [], assetCount: 18, assets: [], createdAt: Date(), description: "", endDate: Date(),hasSharedLink: true, id: "3af2756e-98d1-41a7-92a1-1a9c9a1eb10b", isActivityEnabled: true, owner: ImmichModel.userMock, ownerId: "", shared: true, updatedAt: Date()),
-        Album(albumName: "Таня Гдуля. Ksianzh, Czoch, Jelenia Góra", albumThumbnailAssetId: "308d3c27-2e8f-42d1-b80f-433be39a7382", albumUsers: [], assetCount: 99, assets: [], createdAt: Date(), description: "", endDate: Date(),hasSharedLink: true, id: "12dcc83e-4dc0-4e24-b271-97910a31c518", isActivityEnabled: true, owner: ImmichModel.userMock, ownerId: "", shared: true, updatedAt: Date())
+        Album(albumName: "Ksianzh, Czoch, Jelenia Góra", albumThumbnailAssetId: "308d3c27-2e8f-42d1-b80f-433be39a7382", albumUsers: [], assetCount: 99, assets: [], createdAt: Date(), description: "", endDate: Date(),hasSharedLink: true, id: "12dcc83e-4dc0-4e24-b271-97910a31c518", isActivityEnabled: true, owner: ImmichModel.userMock, ownerId: "", shared: true, updatedAt: Date())
     ]
 }
