@@ -3,6 +3,7 @@ import SDWebImage
 import OpenAPIURLSession
 import OpenAPIRuntime
 import SDWebImageWebPCoder
+import SwiftUI
 
 @MainActor
 final class ImmichModel: ObservableObject {
@@ -15,8 +16,7 @@ final class ImmichModel: ObservableObject {
         case preview
     }
 
-    @UserDefaultsWrapper(key: "server", defaultValue: nil)
-    private var server: String?
+    @AppStorage("server") private var server: String?
 
     private var serverURL: URL? {
         guard let server, let serverURL = URL(string: server) else { return nil }
@@ -101,7 +101,7 @@ final class ImmichModel: ObservableObject {
         guard let client else { throw ImmichError.clientNotInitialized }
 
         do {
-            let query = Operations.getTimeBuckets.Input.Query(albumId: album?.id, size: Components.Schemas.TimeBucketSize.MONTH)
+            let query = Operations.getTimeBuckets.Input.Query(albumId: album?.id)
             let response = try await client.getTimeBuckets(query: query)
 
             switch response {
@@ -122,14 +122,16 @@ final class ImmichModel: ObservableObject {
         guard let client else { throw ImmichError.clientNotInitialized }
 
         do {
-            let query = Operations.getTimeBucket.Input.Query(albumId: album?.id, size: Components.Schemas.TimeBucketSize.MONTH, timeBucket: timeBucket.timeBucket)
+            let query = Operations.getTimeBucket.Input.Query(albumId: album?.id, timeBucket: timeBucket.timeBucket)
             let response = try await client.getTimeBucket(query: query)
 
             switch response {
             case let .ok(okResponse):
                 switch okResponse.body {
-                case .json(let photos):
-                    return photos
+                case .json(let timeBucket):
+                    return timeBucket.id.map { id in
+                        Photo(id: id)
+                    }
                 }
             case .undocumented(statusCode: _, _):
                 throw URLError(.unknown)
@@ -203,9 +205,9 @@ extension ImmichModel {
 
 extension Array where Element == Photo {
     static let mockedPhotos = [
-        Photo(checksum: "", deviceAssetId: "", deviceId: "", duration: "", fileCreatedAt: Date(), fileModifiedAt: Date(), hasMetadata: true, id: "30908ebe-f1d2-4618-a369-609a545c7798", isArchived: true, isFavorite: true, isOffline: true, isTrashed: true, localDateTime: Date(), originalFileName: "", originalPath: "", ownerId: "", _type: .init(value1: .IMAGE), updatedAt: Date()),
-        Photo(checksum: "", deviceAssetId: "", deviceId: "", duration: "", fileCreatedAt: Date(), fileModifiedAt: Date(), hasMetadata: true, id: "e2ddc3d8-e247-4b0a-b13d-7c98f70eb1ee", isArchived: true, isFavorite: true, isOffline: true, isTrashed: true, localDateTime: Date(), originalFileName: "", originalPath: "", ownerId: "", _type: .init(value1: .IMAGE), updatedAt: Date()),
-        Photo(checksum: "", deviceAssetId: "", deviceId: "", duration: "", fileCreatedAt: Date(), fileModifiedAt: Date(), hasMetadata: true, id: "be569c4e-cb17-4535-89a4-d0e78da1a8df", isArchived: true, isFavorite: true, isOffline: true, isTrashed: true, localDateTime: Date(), originalFileName: "", originalPath: "", ownerId: "", _type: .init(value1: .IMAGE), updatedAt: Date())
+        Photo(id: "30908ebe-f1d2-4618-a369-609a545c7798"),
+        Photo(id: "e2ddc3d8-e247-4b0a-b13d-7c98f70eb1ee"),
+        Photo(id: "be569c4e-cb17-4535-89a4-d0e78da1a8df")
     ]
 }
 

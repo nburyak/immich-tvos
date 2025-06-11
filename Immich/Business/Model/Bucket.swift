@@ -1,4 +1,4 @@
-typealias Bucket = Components.Schemas.TimeBucketResponseDto
+typealias Bucket = Components.Schemas.TimeBucketsResponseDto
 
 extension Bucket: Identifiable {
     var id: String {

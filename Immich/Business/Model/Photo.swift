@@ -1,3 +1,3 @@
-typealias Photo = Components.Schemas.AssetResponseDto
-
-extension Photo: Identifiable {}
+struct Photo: Identifiable, Hashable {
+    let id: String
+}
